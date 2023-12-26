@@ -1,0 +1,26 @@
+.env
+*.txt
+.vscode
+
+# TypeScript
+dist
+node_modules
+
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.egg-info/
+docs/_build/

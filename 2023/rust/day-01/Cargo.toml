@@ -1,0 +1,10 @@
+[package]
+name = "day-01"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+itertools = { workspace = true }
+rstest = { workspace = true }
+miette = { workspace = true }
+thiserror = { workspace = true }
