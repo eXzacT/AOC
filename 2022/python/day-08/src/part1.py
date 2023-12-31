@@ -26,9 +26,9 @@ def part1(data: dict[complex, str]) -> int:
                     if new_pos not in data:  # Got to end without being blocked
                         visible_trees += 1
                         break
-                else:  # Means the while loop finished without breaking, so check other directions
+                else:  # Means the while loop finished without breaking, so check if tree is visible from other direction
                     continue
-                # This means we broke from the while loop, break again(neat trick to avoid flags but a bit confusing)
+                # Broke from the while loop, break again
                 break
 
     # Add edges aswell - corners
