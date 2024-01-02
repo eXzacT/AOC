@@ -10,7 +10,7 @@ def time_execution(func: Callable) -> Callable:
         result = func(*args, **kwargs)
         time_end = perf_counter()
         print(
-            f"{func.__name__} took {(time_end-time_start)*1000:>10.4f}s to complete.")
+            f"{func.__name__} took {time_end-time_start:>10.4f}s to complete.")
         return result
 
     return wrapper
