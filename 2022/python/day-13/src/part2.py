@@ -16,7 +16,7 @@ def compare_pairs(l: list | int, r: list | int) -> int:
         case list(), int(): return compare_pairs(l, [r])
         case list(), list():
             for comp_result in map(compare_pairs, l, r):
-                if comp_result:  # Will be true for -1 and 1, 0 continue
+                if comp_result:  # Either left or right has a smaller element, return -1 or 1
                     return comp_result
             # No more elements in either or both sides, which is smaller?
             return compare_pairs(len(l), len(r))
