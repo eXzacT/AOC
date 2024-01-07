@@ -33,8 +33,8 @@ def part2_z3(data: str) -> int:
     def ints(line): return map(int, re.findall(r'-?\d+', line))
     def dist(x1, y1, x2, y2): return abs(x2-x1)+abs(y2-y1)
     # List of sensor coords and their distance to the beacon
-    data = [(x, y, dist(x, y, p, q))
-            for x, y, p, q in map(ints, data.split('\n'))]
+    data = [(x1, y1, dist(x1, y1, x2, y2))
+            for x1, y1, x2, y2 in map(ints, data.split('\n'))]
 
     s = z3.Solver()
     x = z3.Int("x")
@@ -55,4 +55,5 @@ def part2_z3(data: str) -> int:
 
 
 if __name__ == "__main__":
+    print(part2(data))
     print(part2_z3(data))  # 10621647166538
