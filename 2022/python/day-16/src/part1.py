@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from collections import defaultdict
-from itertools import product
+from itertools import permutations
 from functools import cache
 import os
 import re
@@ -26,17 +26,15 @@ def part1(data: str) -> int:
             dists[conn, valve] = 1
 
     # Find all the unknown distances
-    for k, i, j in product(valves, valves, valves):    # floyd-warshall
-        if i == j or j == k or i == k:
-            continue
+    for k, i, j in permutations(valves, 3):    # floyd-warshall
         dists[i, j] = min(dists[i, j], dists[i, k] + dists[k, j])
 
     @cache
     # Frozen set so we can cache, also by doing f-{v} we're removing that valve so we can't turn it again
-    def search(t: int, f=frozenset(valve_flow), start='AA'):
-        return max([valve_flow[v] * (t-dists[start, v]-1) + search(t-dists[start, v]-1, f-{v}, start=v)
+    def search(t: int, vs=frozenset(valve_flow), start='AA'):
+        return max([valve_flow[v] * (t-dists[start, v]-1) + search(t-dists[start, v]-1, vs-{v}, start=v)
                     # If we have time to visit it, +[0] in case it's an empty list so max doesn't complain
-                    for v in f if dists[start, v] < t] + [0])
+                    for v in vs if dists[start, v] < t] + [0])
 
     return search(30)
 
